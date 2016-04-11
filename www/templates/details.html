@@ -1,0 +1,21 @@
+<ion-view view-title="Details">
+    <ion-content class="padding">
+        <div class="list account-details">
+            <div class="item item-avatar">
+                <img src="img/profile_user.jpg">
+                <h2>{{details.fname}} {{details.lname}}</h2>
+                <p>{{details.email}}</p>
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-ios-telephone"></i>
+                <h2>Phone</h2>
+                <p>{{details.contact1}}, {{details.contact2}}</p>
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-ios-location"></i>
+                <h2>Address</h2>
+                <p>{{details.location}}, {{details.area}}, {{details.city}}</p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

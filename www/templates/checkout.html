@@ -1,0 +1,50 @@
+<ion-view view-title="Checkout">
+    <ion-content class="padding checkout">
+        <h3 class="upper-heading">Address Details</h3>
+        <div class="list drom-item bg-wt orders detail ct">
+            <div class="row">
+                <div class="col-100">
+                    <p class="brown">Name :<span ng-bind="details.fname+' '+details.lname"></span></p>
+                    <p class="brown">Address :<span ng-bind="details.location"></span></p>
+                    <p class="brown">Area :<span ng-bind="details.area"></span></p>
+                    <p class="brown">City :<span ng-bind="details.city"></span></p>
+                    <p class="brown">Contact No(s) :<span ng-bind="details.contact1+', '+details.contact2"></span></p>
+                </div>
+            </div>
+        </div>
+        <h3 class="upper-heading">Order Details</h3>
+        <div class="list shadow drom-item bg-wt">
+            <div class="row">
+                <div class="col">
+                    <p class="gray">Sub Total</p>
+                    <p class="gray">Handling Charges</p>
+                    <p class="black">Total</p>
+                </div>
+                <div class="col col-45">
+                    <p class="brown">{{cartDetails.total | currency : 'Rs.' : 2}}</p>
+                    <p class="green">{{cartDetails.ship | currency : 'Rs.' : 2}}</p>
+                    <p class="black">{{cartDetails.gtotal | currency : 'Rs.' : 2}}</p>
+                </div>
+            </div>
+        </div>
+        <h3 class="upper-heading">Payment Method</h3>
+        <div class="list">
+            <!--div class="item item-divider">{{ data.method }}</div-->
+
+            <ion-radio class="w-link" ng-repeat="item in methods" ng-mousedown="getAlert(item.value)"
+                       ng-value="item.value"
+                       ng-disabled="item.disable"
+                       ng-model="data.method">
+                {{ item.text }}<span class="wallet-amount" ng-show="item.amount!=null"> ({{item.amount | currency : 'Rs.' : 2}})</span>
+            </ion-radio>
+        </div>
+        <div class="row"   ng-show="cartTotal">
+            <div class="col-50">
+                <button class="button icon-left ion-ios-cart button-assertive" ng-click="gotoCart()">Go to Cart</button>
+            </div>
+            <div class="col-50">
+                <button class="button icon-left ion-checkmark-circled button-balanced" ng-click="placeOrder()">Place Order</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
