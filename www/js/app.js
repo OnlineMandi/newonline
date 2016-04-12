@@ -126,7 +126,6 @@ angular.module('Onlinemandi', ['ionic', 'ngCordova', 'Onlinemandi.controllers', 
       })
       .state('app.cart', {
           url: '/cart',
-          cache: false,
           views: {
               'menuContent': {
                   templateUrl: 'templates/cart.html',

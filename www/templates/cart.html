@@ -1,4 +1,4 @@
-<ion-view view-title="Cart">
+<ion-view view-title="Cart" cache-view="false" hide-back-button="true">
 	<ion-content class="padding">
 
 
@@ -42,10 +42,10 @@
 		</div>
 		<div  ng-show="cartTotal" class="row">
 			<div class="col-50">
-				<button class="button icon-left ion-trash-b button-assertive" ng-click="emptycart()">Empty Cart</button>
+				<a class="button icon-left ion-trash-b button-assertive" ng-click="emptycart()">Empty Cart</a>
 			</div>
 			<div class="col-50">
-				<button class="button icon-left ion-checkmark-circled button-balanced button-right" ng-click="checkout()">Checkout</button>
+				<a class="button icon-left ion-checkmark-circled button-balanced button-right" href="#/app/checkout">Checkout</a>
 			</div>
 		</div>
 		<div  ng-hide="cartTotal" class="button-bar bar-positive">

@@ -1,4 +1,4 @@
-<ion-view view-title="Checkout">
+<ion-view view-title="Checkout" hide-back-button="true">
     <ion-content class="padding checkout">
         <h3 class="upper-heading">Address Details</h3>
         <div class="list drom-item bg-wt orders detail ct">
@@ -40,10 +40,10 @@
         </div>
         <div class="row"   ng-show="cartTotal">
             <div class="col-50">
-                <button class="button icon-left ion-ios-cart button-assertive" ng-click="gotoCart()">Go to Cart</button>
+                <a class="button icon-left ion-ios-cart button-assertive" ng-click="gotoCart()">Go to Cart</a>
             </div>
             <div class="col-50">
-                <button class="button icon-left ion-checkmark-circled button-balanced" ng-click="placeOrder()">Place Order</button>
+                <a class="button icon-left ion-checkmark-circled button-balanced" ng-click="placeOrder()">Place Order</a>
             </div>
         </div>
     </ion-content>

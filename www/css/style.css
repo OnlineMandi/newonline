@@ -737,7 +737,7 @@
     line-height: 42px;
 }
 
-[ng-show="cartTotal"] div:last-child button.button{
+[ng-show="cartTotal"] div:last-child a.button{
     float: right;
 }
 div.payments {
@@ -758,4 +758,6 @@ div.payments {
 .account .item-icon-right .icon {
     font-size: 25px;
 }
-
+ion-header-bar .bar .button.button-icon.icon-right {
+    font-size: 25px;
+}
