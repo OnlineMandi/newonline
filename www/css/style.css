@@ -758,6 +758,6 @@ div.payments {
 .account .item-icon-right .icon {
     font-size: 25px;
 }
-ion-header-bar .bar .button.button-icon.icon-right {
-    font-size: 25px;
+.bar .button.button-icon.ion-android-cart::before {
+    font-size: 28px;
 }
