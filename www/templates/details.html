@@ -1,4 +1,5 @@
-<ion-view view-title="Details">
+
+<ion-view view-title="Details" enable-menu-with-back-views="false">
     <ion-content class="padding">
         <div class="list account-details">
             <div class="item item-avatar">
@@ -6,10 +7,11 @@
                 <h2>{{details.fname}} {{details.lname}}</h2>
                 <p>{{details.email}}</p>
             </div>
-            <div class="item item-icon-left">
+            <div class="item item-icon-left item-icon-right">
                 <i class="icon ion-ios-telephone"></i>
                 <h2>Phone</h2>
                 <p>{{details.contact1}}, {{details.contact2}}</p>
+                <i class="icon ion-edit"></i>
             </div>
             <div class="item item-icon-left">
                 <i class="icon ion-ios-location"></i>

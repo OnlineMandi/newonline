@@ -712,10 +712,6 @@
     width: 100%;
 }
 
-.out-stock {
-    position: relative;
-    border: 1px solid #ef473a;
-}
 .out-stock:before{
     background: rgba(69, 0, 0, 0.21) none repeat scroll 0 0;
     bottom: -10px;
@@ -724,6 +720,7 @@
     position: absolute;
     right: -10px;
     top: -10px;
+    z-index: 200;
 
 }
 [ng-show="cartTotal"] button.button
@@ -755,9 +752,33 @@ div.payments {
 .account-details .item p{
     white-space: normal;
 }
+.account-details .item icon.ion-edit{
+    font-size: 15px;
+}
+.account-details .item-icon-right .icon.ion-edit::before {
+    font-size: 20px;
+    position: relative;
+    right: 0;
+    top: -15px;
+    width: 20px;
+}
+
 .account .item-icon-right .icon {
     font-size: 25px;
 }
 .bar .button.button-icon.ion-android-cart::before {
     font-size: 28px;
+}
+.button.button-icon.button-clear.ion-android-cart > span {
+    background: #444444 none repeat scroll 0 0;
+    border-radius: 10px;
+    font-family: arial;
+    font-size: 11px;
+    height: 18px;
+    line-height: 18px;
+    position: absolute;
+    right: -3px;
+    text-align: center;
+    top: -3px;
+    width: 18px;
 }

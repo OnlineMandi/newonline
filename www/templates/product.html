@@ -1,4 +1,5 @@
-<div class="row" ng-class="{'out-stock':product.rate_a=='' && product.rate_b==''}">
+<div ng-class="{'out-stock':product.rate_a=='' && product.rate_b==''}">
+    <div class="row">
     <div class="col-50">
         <img ng-src="img/products/{{product.img}}" fallback-src="http://beta.onlinemandi.com/uploads/products/medium/{{product.img}}">
     </div>
@@ -15,7 +16,7 @@
     </div>
 
 </div>
-<div class="row" ng-hide="product.rate_a=='' && product.rate_b==''">
+<div class="row">
     <div class="col-33">
         <label class="item item-input item-select item-custom-select">
             <div class="input-label">
@@ -36,7 +37,7 @@
         </label>
     </div>
     <div class="col-30">
-        <button id="aa" class="button button-small right" ng-class="buttonClass" ng-click="addToCart($event)" ng-bind="buttonTxt"></button>
+        <button id="aa" class="button button-small right" ng-class="buttonClass" ng-click="addToCart($event)" ng-bind="buttonTxt"  ng-disabled="product.rate_a=='' && product.rate_b==''"></button>
 
     </div>
-</div>
+</div></div>

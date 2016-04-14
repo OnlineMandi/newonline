@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="true">
+<ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
     <ion-nav-bar class="bar-assertive">
       <ion-nav-back-button>
@@ -10,7 +10,8 @@
       <ion-nav-buttons side="right">
         <!-- <button ng-show="isAuthenticated" class="button button-icon button-clear ion-unlocked" ng-click="logout()">
         </button> -->
-        <a class="button button-icon button-clear ion-android-cart" href="#/app/cart">
+        <a  ng-show="isAuthenticated" class="button button-icon button-clear ion-android-cart" href="#/app/cart">
+          <span>3</span>
         </a>
       </ion-nav-buttons>
     </ion-nav-bar>
