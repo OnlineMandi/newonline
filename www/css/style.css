@@ -199,17 +199,16 @@
     padding:0;
 }
 .pro-list.full-width .item h3 {
-    font-size: 16px;
-    margin-bottom: 5px;
-    margin-top: 7px;
+    font-size: 20px;
+    margin: 5px 10px;
 }
 .checkout h3 {
     font-weight: bold;
     color:#000;
 }
 .pro-list.full-width .item p {
-    font-size: 14px;
-    margin-top:10px;
+    font-size: 16px;
+    margin:10px 5px;
 }
 
 .pro-list.full-width .item button.ion-btn {
@@ -233,8 +232,7 @@
     top: 0;
 }
 .pro-list.full-width .item img {
-    margin-left: -4px;
-    padding: 2px;
+    padding: 5px;
     width: 100%;
 }
 .pro-list.full-width .item .out-stock img {
@@ -707,7 +705,7 @@
     display: inline-block;
     font-size: 20px;
     font-weight: 500;
-    margin-top: 35px;
+    margin-top: 55px;
     text-align: center;
     width: 100%;
 }
@@ -734,8 +732,11 @@
     line-height: 42px;
 }
 
-[ng-show="cartTotal"] div:last-child a.button{
+[ng-show="cartTotal"] div:last-child a.button, .change-num .row div:last-child a.button{
     float: right;
+}
+.change-num .row {
+    padding: 15px;
 }
 div.payments {
     white-space: normal;
@@ -761,6 +762,7 @@ div.payments {
     right: 0;
     top: -15px;
     width: 20px;
+    cursor:pointer;
 }
 
 .account .item-icon-right .icon {

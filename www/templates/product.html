@@ -1,11 +1,12 @@
 <div ng-class="{'out-stock':product.rate_a=='' && product.rate_b==''}">
     <div class="row">
+        <h3>{{product.name}}</h3>
+    </div>
+    <div class="row">
     <div class="col-50">
         <img ng-src="img/products/{{product.img}}" fallback-src="http://beta.onlinemandi.com/uploads/products/medium/{{product.img}}">
     </div>
     <div class="col-50">
-        <h3>{{product.name}}</h3>
-
         <span ng-hide="product.rate_a=='' && product.rate_b==''">
             <p>Grade A<span><ion-rate ng-hide="product.rate_a==''">Rs.</ion-rate><out-of-stock ng-show="product.rate_a==''">Out of Stock</out-of-stock>{{product.rate_a}}/{{unit}}</span></p>
             <p>Grade B<span><ion-rate ng-hide="product.rate_b==''">Rs.</ion-rate><out-of-stock ng-show="product.rate_b==''">Out of Stock</out-of-stock>{{product.rate_b}}/{{unit}}</span></p>

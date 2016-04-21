@@ -314,6 +314,9 @@ var units = {"1":{"id": 1,"name": "Gram","sname": "gm","status": 1}, "2":{"id": 
 		register: function(user) {
 				return $http.post(base + '/index/register', user);
 		},
+		updatenumbers: function(contacts) {
+				return $http.post(base + '/index/update-numbers', contacts);
+		},
 		setProfilepic: function(pic) {
 				return $http.post(base + '/index/changepic', pic);
 		},
@@ -332,7 +335,7 @@ var units = {"1":{"id": 1,"name": "Gram","sname": "gm","status": 1}, "2":{"id": 
 		getCities: function(item) {
 				return $http.get(base + '/index/cities?state_id=' + item);
 			},
-		getindex: function() {
+		getIndex: function() {
 				return $http.get(base + '/index/index');
 			},
 		getCartItems: function() {

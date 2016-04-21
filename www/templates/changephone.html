@@ -1,0 +1,30 @@
+
+<ion-modal-view>
+	<ion-header-bar class="bar-assertive">
+		<h1 class="title">Change Contact Numbers</h1>
+	</ion-header-bar>
+	<ion-content>
+		<ng-form role="form" method="post" name="phone" novalidate>
+			<div class="card change-num">
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Mobile Number 1</span>
+					<input name="contact1" type="text" placeholder="Contact Number 1"  ng-model="contacts.c1"  ng-minlength="10" ng-maxlength="10"  ng-required="true" ng-pattern="phoneNumbr">
+					<span class="error-message" ng-show="phone.contact1.$dirty && phone.contact1.$invalid">The mobile number field should be of 10 digits</span>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Mobile Number 2</span>
+					<input name="contact2" type="text" placeholder="Contact Number 2"  ng-model="contacts.c2" ng-required="true"  ng-pattern="phoneNumbr">
+                    <span class="error-message" ng-show="phone.contact2.$dirty && phone.contact2.$invalid">The mobile number field should be of 10 digits</span>
+				</label>
+				<div class="row">
+					<div class="col-50">
+						<a class="button icon-left ion-android-cancel button-assertive" ng-click="closemodal()">Cancel</a>
+					</div>
+					<div class="col-50">
+						<a class="button icon-left ion-checkmark-circled button-balanced button-right"  ng-disabled="phone.contact1.$dirty && phone.contact1.$invalid || phone.contact2.$dirty && phone.contact2.$invalid" ng-click="updatePhone()">Update</a>
+					</div>
+				</div>
+			</div>
+		</ng-form>
+	</ion-content>
+</ion-modal-view>

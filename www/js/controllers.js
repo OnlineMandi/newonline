@@ -20,7 +20,8 @@ angular.module('Onlinemandi.controllers', ['ngImgCrop'])
     })
 .controller('AppCtrl', ['$rootScope', '$state', '$window', '$ionicModal', '$ionicHistory', '$ionicPopup', 'AuthFactory', '$location', 'UserFactory', 'CartFactory', 'LSFactory', '$scope', 'Loader',
 function($rootScope, $state, $window, $ionicModal, $ionicHistory, $ionicPopup, AuthFactory, $location, UserFactory, CartFactory, LSFactory, $scope, Loader) {
-	$rootScope.$on('showLoginModal', function($event, scope, cancelCallback, callback) {
+    //LSFactory.clear();
+    $rootScope.$on('showLoginModal', function($event, scope, cancelCallback, callback) {
         $scope = scope || $scope;
 		$scope.user = {
 			username: '',
@@ -613,11 +614,51 @@ function($rootScope, $state, $window, $ionicModal, $ionicHistory, $ionicPopup, A
     .controller('OfflineCtrl', ['$scope', '$ionicPopover', 'UserFactory', function($scope, $ionicPopover, UserFactory) {
 
     }])
-    .controller('AccountCtrl', ['$scope', '$ionicPopover', 'UserFactory', 'AuthFactory', function($scope, $ionicPopover, UserFactory, AuthFactory) {
+    .controller('AccountCtrl', ['$rootScope', '$state', '$location', '$ionicHistory', '$scope', '$ionicPopover', 'UserFactory', 'AuthFactory', function($rootScope, $state, $location, $ionicHistory, $scope, $ionicPopover, UserFactory, AuthFactory) {
+        if(!$rootScope.isAuthenticated){
+            $ionicHistory.nextViewOptions({
+                disableBack: true,
+                historyRoot: true
+            });
 
+            $location.path('/app');
+        }
     }])
-    .controller('DetailsCtrl', ['$scope', '$ionicPopover', 'UserFactory', 'AuthFactory', function($scope, $ionicPopover, UserFactory, AuthFactory) {
+    .controller('DetailsCtrl', ['$scope', '$ionicModal', '$ionicPopover', 'UserFactory', 'AuthFactory', 'Loader', function($scope, $ionicModal, $ionicPopover, UserFactory, AuthFactory, Loader) {
         $scope.details = AuthFactory.getDetails();
+        $scope.editPhone = function(){
+            $ionicModal.fromTemplateUrl('templates/changephone.html', {
+                scope: $scope
+            }).then(function(modal) {
+                $scope.contacts = {
+                    c1: $scope.details.contact1,
+                    c2: $scope.details.contact2
+                };
+                $scope.modal = modal;
+                $scope.modal.show();
+                $scope.closemodal = function(){
+                    $scope.modal.remove();
+                }
+                $scope.phoneNumbr = /^\d{10}$/;
+                $scope.updatePhone = function() {
+                    Loader.showLoading('Updating mobile numbers...');
+                    UserFactory.updatenumbers($scope.contacts).success(function(data) {
+                        Loader.hideLoading();
+                        $scope.details.contact1 = $scope.contacts.c1;
+                        $scope.details.contact2 = $scope.contacts.c2;
+                        $scope.modal.hide();
+                        if (typeof callback === 'function') {
+                            callback();
+                        }
+                    }).error(function(err, statusCode) {
+                        Loader.hideLoading();
+                        $scope.errormsg = true;
+                    });
+                }
+
+            });
+
+        }
     }])
     .controller('TestCtrl', ['$scope', '$ionicPopover', 'UserFactory', function($scope, $ionicPopover, UserFactory) {
 
