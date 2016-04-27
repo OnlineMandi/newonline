@@ -1,15 +1,25 @@
-<ion-view view-title="Online Mandi">
-    <ion-content class="padding">
-        <div class="card">
-            <div class="item item-text-wrap">
-                Unexpected error. Check Internet Connection
-            </div>
-        </div>
-
-                <a class="item item-icon-left button button-block button-assertive">
-                    <i class="icon ion-refresh"></i>
-                    Try to Reload The Application
-                </a>
-
+<ion-view view-title="Order Details" cache-view="false">
+    <ion-content class="padding account">
+        <ion-list>
+            <ion-item class="item item-icon-left item-icon-right" href="#/app/account/details">
+                <i class="icon ion-ios-time-outline"></i>
+                Active Orders
+                <span class="count">{{active}}</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </ion-item>
+            <ion-item class="item item-icon-left item-icon-right" href="#/app/account/orders">
+                <i class="icon ion-ios-checkmark-outline"></i>
+                Completed Orders
+                <span class="count">{{completed}}</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </ion-item>
+            <ion-item class="item item-icon-left item-icon-right" href="#/app/account/orders">
+                <i class="icon ion-ios-close-outline"></i>
+                Cancelled Orders
+                <span class="count">9999</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </ion-item>
+        </ion-list>
     </ion-content>
+
 </ion-view>

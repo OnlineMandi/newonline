@@ -307,7 +307,7 @@ function($rootScope, $state, $window, $ionicModal, $ionicHistory, $ionicPopup, A
             } else {
                 $scope.viewFavourite = true;
                 if($rootScope.isAuthenticated){
-                    Loader.showLoading('Loading.....');
+                    Loader.showLoading('<ion-spinner></ion-spinner>');
                     $scope.favouritefruits = [];
                     var fav_fruits = ProductsFactory.getProducts('allfavouritefruits');
                     for(var j=0; j<fav_fruits.length; j++){
@@ -686,13 +686,31 @@ function($rootScope, $state, $window, $ionicModal, $ionicHistory, $ionicPopup, A
         }
     }])
     .controller('OrdersCtrl', ['$scope', '$ionicModal', '$ionicPopover', 'UserFactory', 'AuthFactory', 'Loader', function($scope, $ionicModal, $ionicPopover, UserFactory, AuthFactory, Loader) {
-        Loader.showLoading('Updating mobile numbers...');
+        Loader.showLoading('<ion-spinner></ion-spinner>');
         UserFactory.getOrderDetails().success(function(data) {
+            $scope.active = data.act;
+            $scope.completed = data.com;
+            $scope.cancelled = data.can;
             Loader.hideLoading();
-            $scope.modal.hide();
             if(typeof callback === 'function') {
                 callback();
             }
+        }).error(function(err, statusCode) {
+            Loader.hideLoading();
+            $scope.errormsg = true;
+        });
+    }])
+    .controller('ActiveOrdersCtrl', ['$rootScope', '$scope', '$ionicModal', '$ionicPopover', 'UserFactory', 'AuthFactory', 'Loader', function($rootScope, $scope, $ionicModal, $ionicPopover, UserFactory, AuthFactory, Loader) {
+        Loader.showLoading('<ion-spinner></ion-spinner>');
+        if($rootscope.activeorders==undefined){
+            $scope.status = null;
+        } else {
+            $scope.status = $rootScope.activeOrderStatus;
+        }
+        UserFactory.getActiveOrders($scope.status).success(function(data) {
+
+            Loader.hideLoading();
+
         }).error(function(err, statusCode) {
             Loader.hideLoading();
             $scope.errormsg = true;

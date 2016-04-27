@@ -799,3 +799,19 @@ div.payments {
 .loading-container .loading {
     background-color: #ffffff;
 }
+.account .item .count {
+    display: flex;
+    position: absolute;
+    right: 140px;
+    top: 15px;;
+    color: #ef473a;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 15px;
+    padding: 3px 8px;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+    z-index: 1;
+}

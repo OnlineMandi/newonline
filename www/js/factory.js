@@ -315,7 +315,10 @@ var units = {"1":{"id": 1,"name": "Gram","sname": "gm","status": 1}, "2":{"id": 
             return $http.post(base + '/index/register', user);
 		},
         getOrderDetails: function(){
-            return $http.get(base + '/index/Orders-detail');
+            return $http.get(base + '/index/orders-detail');
+        },
+        getActiveOrders: function(status){
+            return $http.get(base + '/index/active-orders',status);
         },
 		updatenumbers: function(contacts) {
             return $http.post(base + '/index/update-numbers', contacts);
