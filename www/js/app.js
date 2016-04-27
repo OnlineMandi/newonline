@@ -161,6 +161,15 @@ angular.module('Onlinemandi', ['ionic', 'ngCordova', 'Onlinemandi.controllers', 
                   controller: 'DetailsCtrl'
               }
           }
+      })
+      .state('app.orders', {
+          url: '/account/orders',
+          views: {
+              'menuContent': {
+                  templateUrl: 'templates/orders.html',
+                  controller: 'OrdersCtrl'
+              }
+          }
       });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');

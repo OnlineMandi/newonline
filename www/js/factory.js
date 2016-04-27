@@ -309,42 +309,45 @@ var units = {"1":{"id": 1,"name": "Gram","sname": "gm","status": 1}, "2":{"id": 
 	var cityKey = 'city';
 	var UserAPI = {
 		login: function(user) {
-				return $http.post(base + '/index/login', user);
+            return $http.post(base + '/index/login', user);
 		},
 		register: function(user) {
-				return $http.post(base + '/index/register', user);
+            return $http.post(base + '/index/register', user);
 		},
+        getOrderDetails: function(){
+            return $http.get(base + '/index/Orders-detail');
+        },
 		updatenumbers: function(contacts) {
-				return $http.post(base + '/index/update-numbers', contacts);
+            return $http.post(base + '/index/update-numbers', contacts);
 		},
 		setProfilepic: function(pic) {
-				return $http.post(base + '/index/changepic', pic);
+            return $http.post(base + '/index/changepic', pic);
 		},
 		logout: function() {
-				AuthFactory.deleteAuth();
+            AuthFactory.deleteAuth();
 		},
 		isCurrentCity: function() {
-				return this.getCity() === null ? false : true;
+            return this.getCity() === null ? false : true;
 		},
 		getCity: function() {
-				return LSFactory.get(cityKey);
+            return LSFactory.get(cityKey);
 		},
 		setCity: function(city) {
-				return LSFactory.set(cityKey, city);
-			},
+            return LSFactory.set(cityKey, city);
+		},
 		getCities: function(item) {
-				return $http.get(base + '/index/cities?state_id=' + item);
-			},
+            return $http.get(base + '/index/cities?state_id=' + item);
+		},
 		getIndex: function() {
-				return $http.get(base + '/index/index');
-			},
+            return $http.get(base + '/index/index');
+		},
 		getCartItems: function() {
-				var userId = AuthFactory.getUser()._id;
-				return $http.get(base + '/users/' + userId + '/cart');
+			var userId = AuthFactory.getUser()._id;
+			return $http.get(base + '/users/' + userId + '/cart');
 		},
 		addToCart: function(book) {
-				var userId = AuthFactory.getUser()._id;
-				return $http.post(base + '/users/' + userId + '/cart', book);
+			var userId = AuthFactory.getUser()._id;
+			return $http.post(base + '/users/' + userId + '/cart', book);
 		},
 		getPurchases: function() {
 				var userId = AuthFactory.getUser()._id;

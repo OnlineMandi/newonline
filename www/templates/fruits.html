@@ -1,17 +1,18 @@
-<div class="tabs-striped tabs-color-assertive tabs-top">
-	<div class="tabs">
-		<a class="tab-item" ng-class="{active : viewAll}" ng-click="viewall()">
-			All Fruits
-		</a>
-		<a class="tab-item"  ng-class="{active : viewFavourite}" ng-click="viewfavourite()">
-			Favorites
-		</a>
-		<a class="tab-item" ng-class="{active : viewBestSelling}" ng-click="viewbestselling()">
-			Best Selling
-		</a>
-	</div>
-</div>
-<ion-view view-title="Fresh Fruits">
+
+<ion-view view-title="Fresh Fruits" ng-hide="errorshow">
+    <div ng-show="viewtabs" class="tabs-striped tabs-color-assertive tabs-top">
+        <div class="tabs">
+            <a class="tab-item" ng-class="{active : viewAll}" ng-click="viewall()">
+                All Fruits
+            </a>
+            <a class="tab-item"  ng-class="{active : viewFavourite}" ng-click="viewfavourite()">
+                Favorites
+            </a>
+            <a class="tab-item" ng-class="{active : viewBestSelling}" ng-click="viewbestselling()">
+                Best Selling
+            </a>
+        </div>
+    </div>
 	<ion-content class="custom-top">
 		<ion-list class="pro-list full-width" ng-show="viewAll">
             <ion-item ng-repeat="fruit in fruits">
@@ -34,5 +35,21 @@
             </ion-item>
         </ion-list>
   </ion-content>
+
+</ion-view>
+<ion-view  view-title="Fresh Fruits" ng-show="errorshow">
+    <ion-content class="padding">
+        <div class="card">
+            <div class="item item-text-wrap">
+                Unexpected error. Check Internet Connection
+            </div>
+        </div>
+
+        <a class="item item-icon-left button button-block button-assertive" ng-click="reload()">
+            <i class="icon ion-refresh"></i>
+            Try to Reload The Application
+        </a>
+
+    </ion-content>
 </ion-view>
 

@@ -257,15 +257,18 @@ function($rootScope, $state, $window, $ionicModal, $ionicHistory, $ionicPopup, A
             });
 		};
 }])
-    .controller('FruitsCtrl', ['$rootScope', '$ionicPopover', '$ionicScrollDelegate', '$scope', '$ionicPopup', 'Loader', 'AuthFactory', 'UserFactory', 'ProductsFactory', 'WeightFactory',function($rootScope, $ionicPopover, $ionicScrollDelegate, $scope, $ionicPopup, Loader, AuthFactory, UserFactory, ProductsFactory, WeightFactory) {
-        Loader.showLoading('Loading....');
+    .controller('FruitsCtrl', ['$rootScope', '$state', '$ionicPopover', '$ionicScrollDelegate', '$scope', '$ionicPopup', 'Loader', 'AuthFactory', 'UserFactory', 'ProductsFactory', 'WeightFactory',function($rootScope, $state, $ionicPopover, $ionicScrollDelegate, $scope, $ionicPopup, Loader, AuthFactory, UserFactory, ProductsFactory, WeightFactory) {
+        Loader.showLoading('<ion-spinner></ion-spinner>');
         $scope.viewAll = true;
+        $scope.viewtabs = false;
         $scope.viewFavourite = false;
         $scope.viewBestSelling = false;
+        $scope.errorshow = false;
         $scope.totalitems = null;
         $scope.totalfavouriteitems = null;
         /*getting fruits data from server*/
         ProductsFactory.fruits($scope.totalitems).success(function(data) {
+            $scope.viewtabs = true;
             if(data.update==1){
                 AuthFactory.setProductStatus('fruits',data.updateKey);
                 AuthFactory.setProductStatus('favouritefruits',data.updateKey);
@@ -285,8 +288,14 @@ function($rootScope, $state, $window, $ionicModal, $ionicHistory, $ionicPopup, A
                 Loader.hideLoading();
             }
         }).error(function(err, statusCode) {
-            Loader.hideLoading();
-            Loader.toggleLoadingWithMessage(err.message);
+            if(err==null){
+                Loader.hideLoading();
+                $scope.viewAll = false;
+                $scope.errorshow = true;
+            }else{
+                Loader.hideLoading();
+                Loader.toggleLoadingWithMessage(err.message);
+            }
         });
         $scope.viewfavourite = function(){
             $ionicScrollDelegate.scrollTop();
@@ -343,16 +352,22 @@ function($rootScope, $state, $window, $ionicModal, $ionicHistory, $ionicPopup, A
                 return;
             }
         };
+        $scope.reload = function(){
+            $state.go($state.current, {}, {reload: true});
+        };
 
     }])
-    .controller('VegetablesCtrl', ['$rootScope', '$ionicPopover', '$ionicScrollDelegate', '$scope', '$ionicPopup', 'Loader', 'AuthFactory', 'UserFactory', 'ProductsFactory', 'WeightFactory', function($rootScope, $ionicPopover, $ionicScrollDelegate, $scope, $ionicPopup, Loader, AuthFactory, UserFactory, ProductsFactory, WeightFactory) {
-        Loader.showLoading('Loading....');
+    .controller('VegetablesCtrl', ['$rootScope', '$state', '$ionicPopover', '$ionicScrollDelegate', '$scope', '$ionicPopup', 'Loader', 'AuthFactory', 'UserFactory', 'ProductsFactory', 'WeightFactory', function($rootScope, $state, $ionicPopover, $ionicScrollDelegate, $scope, $ionicPopup, Loader, AuthFactory, UserFactory, ProductsFactory, WeightFactory) {
+        Loader.showLoading('<ion-spinner></ion-spinner>');
         $scope.viewAll = true;
+        $scope.viewtabs = false;
         $scope.viewFavourite = false;
         $scope.viewBestSelling = false;
+        $scope.errorshow = false;
         $scope.totalitems = null;
         $scope.totalfavouriteitems = null;
         ProductsFactory.vegetables($scope.totalitems).success(function(data) {
+            $scope.viewtabs = true;
             if(data.update==1){
                 AuthFactory.setProductStatus('vegetables',data.updateKey);
                 AuthFactory.setProductStatus('favouritevegetables',data.updateKey);
@@ -371,8 +386,15 @@ function($rootScope, $state, $window, $ionicModal, $ionicHistory, $ionicPopup, A
                 Loader.hideLoading();
             }
         }).error(function(err, statusCode) {
-            Loader.hideLoading();
-            Loader.toggleLoadingWithMessage(err.message);
+            if(err==null){
+
+                Loader.hideLoading();
+                $scope.viewAll = false;
+                $scope.errorshow = true;
+            }else{
+                Loader.hideLoading();
+                Loader.toggleLoadingWithMessage(err.message);
+            }
         });
         $scope.viewfavourite = function(){
             $ionicScrollDelegate.scrollTop();
@@ -428,6 +450,9 @@ function($rootScope, $state, $window, $ionicModal, $ionicHistory, $ionicPopup, A
                 $scope.viewAll = true;
                 return;
             }
+        };
+        $scope.reload = function(){
+            $state.go($state.current, {}, {reload: true});
         };
 
     }])
@@ -659,6 +684,19 @@ function($rootScope, $state, $window, $ionicModal, $ionicHistory, $ionicPopup, A
             });
 
         }
+    }])
+    .controller('OrdersCtrl', ['$scope', '$ionicModal', '$ionicPopover', 'UserFactory', 'AuthFactory', 'Loader', function($scope, $ionicModal, $ionicPopover, UserFactory, AuthFactory, Loader) {
+        Loader.showLoading('Updating mobile numbers...');
+        UserFactory.getOrderDetails().success(function(data) {
+            Loader.hideLoading();
+            $scope.modal.hide();
+            if(typeof callback === 'function') {
+                callback();
+            }
+        }).error(function(err, statusCode) {
+            Loader.hideLoading();
+            $scope.errormsg = true;
+        });
     }])
     .controller('TestCtrl', ['$scope', '$ionicPopover', 'UserFactory', function($scope, $ionicPopover, UserFactory) {
 
